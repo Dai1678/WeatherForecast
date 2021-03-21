@@ -18,11 +18,24 @@ package dev.dai.weatherforecast
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import dev.dai.weatherforecast.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -39,8 +52,54 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
+    val isLightTheme = MaterialTheme.colors.isLight
     Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+        Column {
+            Box(modifier = Modifier.weight(1f)) {
+                Image(
+                    painter = painterResource(id = R.drawable.shibuya),
+                    contentDescription = "current place's image",
+                    contentScale = ContentScale.Crop,
+                    alpha = if (isLightTheme) 1f else 0.8f,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp))
+                )
+                Column(
+                    Modifier
+                        .padding(16.dp)
+                        .align(Alignment.TopStart),
+                ) {
+                    Text(
+                        text = "Sunny",
+                        color = Color.White,
+                        style = MaterialTheme.typography.h5
+                    )
+                    Text(
+                        text = "18℃",
+                        color = Color.White,
+                        style = MaterialTheme.typography.subtitle1
+                    )
+                }
+                Column(
+                    Modifier
+                        .padding(start = 16.dp, bottom = 16.dp)
+                        .align(Alignment.BottomStart),
+                ) {
+                    Text(
+                        text = "Tokyo",
+                        color = Color.White,
+                        style = MaterialTheme.typography.h5
+                    )
+                    Text(
+                        text = "Shibuya",
+                        color = Color.White,
+                        style = MaterialTheme.typography.subtitle1
+                    )
+                }
+            }
+            Text(text = "test", modifier = Modifier.weight(1f))
+        }
     }
 }
 
