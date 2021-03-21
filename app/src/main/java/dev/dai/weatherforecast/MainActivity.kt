@@ -36,6 +36,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.dai.weatherforecast.ui.components.WeatherForecastList
 import dev.dai.weatherforecast.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -98,7 +99,7 @@ fun MyApp() {
                     )
                 }
             }
-            Text(text = "test", modifier = Modifier.weight(1f))
+            WeatherForecastList(modifier = Modifier.weight(1f))
         }
     }
 }
