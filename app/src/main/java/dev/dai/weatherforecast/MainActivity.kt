@@ -40,6 +40,7 @@ import dev.dai.weatherforecast.model.weather
 import dev.dai.weatherforecast.model.weatherForecastItems
 import dev.dai.weatherforecast.ui.components.CurrentWeather
 import dev.dai.weatherforecast.ui.components.WeatherForecastList
+import dev.dai.weatherforecast.ui.components.WeatherImage
 import dev.dai.weatherforecast.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -56,38 +57,10 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    val isLightTheme = MaterialTheme.colors.isLight
     Surface(color = MaterialTheme.colors.background) {
         Column {
-            Box(modifier = Modifier.weight(1f)) {
-                Image(
-                    painter = painterResource(id = R.drawable.shibuya),
-                    contentDescription = "current place's image",
-                    contentScale = ContentScale.Crop,
-                    alpha = if (isLightTheme) 1f else 0.8f,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp))
-                )
-                CurrentWeather(weather, modifier = Modifier.align(Alignment.TopStart))
-                Column(
-                    Modifier
-                        .padding(start = 16.dp, bottom = 16.dp)
-                        .align(Alignment.BottomStart),
-                ) {
-                    Text(
-                        text = "Tokyo",
-                        color = Color.White,
-                        style = MaterialTheme.typography.h5
-                    )
-                    Text(
-                        text = "Shibuya",
-                        color = Color.White,
-                        style = MaterialTheme.typography.subtitle1
-                    )
-                }
-            }
-            WeatherForecastList(weatherForecastItems, modifier = Modifier.weight(1f))
+            WeatherImage(weather, modifier = Modifier.weight(2f))
+            WeatherForecastList(weatherForecastItems, modifier = Modifier.weight(3f))
         }
     }
 }
