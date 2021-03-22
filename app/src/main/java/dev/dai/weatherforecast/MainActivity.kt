@@ -18,19 +18,32 @@ package dev.dai.weatherforecast
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
+import dev.dai.weatherforecast.model.weather
+import dev.dai.weatherforecast.model.weatherForecastItems
+import dev.dai.weatherforecast.ui.components.WeatherForecastList
+import dev.dai.weatherforecast.ui.components.WeatherImage
 import dev.dai.weatherforecast.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            MyTheme {
-                MyApp()
+            ProvideWindowInsets {
+                MyTheme {
+                    WindowCompat.getInsetsController(
+                        window, window.decorView
+                    )?.isAppearanceLightStatusBars = MaterialTheme.colors.isLight
+                    MyApp()
+                }
             }
         }
     }
@@ -40,7 +53,10 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+        Column {
+            WeatherImage(weather, modifier = Modifier.weight(2f))
+            WeatherForecastList(weatherForecastItems, modifier = Modifier.weight(3f))
+        }
     }
 }
 
