@@ -34,12 +34,15 @@ import dev.dai.weatherforecast.model.weatherForecastItems
 import dev.dai.weatherforecast.util.toWeatherIconUrl
 
 @Composable
-fun WeatherForecastList(modifier: Modifier = Modifier) {
+fun WeatherForecastList(
+    weatherForecastList: List<WeatherForecast>,
+    modifier: Modifier = Modifier
+) {
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(top = 8.dp)
     ) {
-        items(weatherForecastItems) { item ->
+        items(weatherForecastList) { item ->
             WeatherForecastItem(item)
         }
     }
@@ -82,6 +85,9 @@ private fun WeatherForecastItem(weatherForecast: WeatherForecast) {
 @Preview
 @Composable
 fun WeatherForecastListPreview() {
+    Surface {
+        WeatherForecastList(weatherForecastItems)
+    }
 }
 
 @Preview

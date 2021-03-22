@@ -37,6 +37,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.dai.weatherforecast.model.weather
+import dev.dai.weatherforecast.model.weatherForecastItems
 import dev.dai.weatherforecast.ui.components.CurrentWeather
 import dev.dai.weatherforecast.ui.components.WeatherForecastList
 import dev.dai.weatherforecast.ui.theme.MyTheme
@@ -86,7 +87,7 @@ fun MyApp() {
                     )
                 }
             }
-            WeatherForecastList(modifier = Modifier.weight(1f))
+            WeatherForecastList(weatherForecastItems, modifier = Modifier.weight(1f))
         }
     }
 }
