@@ -29,6 +29,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.coil.CoilImage
+import dev.chrisbanes.accompanist.insets.LocalWindowInsets
+import dev.chrisbanes.accompanist.insets.toPaddingValues
 import dev.dai.weatherforecast.model.WeatherForecast
 import dev.dai.weatherforecast.model.weatherForecastItems
 import dev.dai.weatherforecast.util.toWeatherIconUrl
@@ -40,7 +42,8 @@ fun WeatherForecastList(
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(top = 8.dp)
+        contentPadding =
+            LocalWindowInsets.current.navigationBars.toPaddingValues()
     ) {
         items(weatherForecastList) { item ->
             WeatherForecastItem(item)

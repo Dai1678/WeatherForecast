@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.coil.CoilImage
+import dev.chrisbanes.accompanist.insets.statusBarsPadding
 import dev.dai.weatherforecast.R
 import dev.dai.weatherforecast.model.Weather
 import dev.dai.weatherforecast.util.toWeatherIconUrl
@@ -38,7 +39,7 @@ fun WeatherImage(weather: Weather, modifier: Modifier = Modifier) {
             weatherName = weather.weatherName,
             weatherIconId = weather.weatherIconId,
             temperature = weather.temperature,
-            modifier = Modifier.align(Alignment.TopStart)
+            modifier = Modifier.align(Alignment.TopStart).statusBarsPadding()
         )
         WeatherPlace(
             place = weather.place,

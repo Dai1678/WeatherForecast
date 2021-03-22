@@ -18,27 +18,17 @@ package dev.dai.weatherforecast
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 import dev.dai.weatherforecast.model.weather
 import dev.dai.weatherforecast.model.weatherForecastItems
-import dev.dai.weatherforecast.ui.components.CurrentWeather
 import dev.dai.weatherforecast.ui.components.WeatherForecastList
 import dev.dai.weatherforecast.ui.components.WeatherImage
 import dev.dai.weatherforecast.ui.theme.MyTheme
@@ -46,9 +36,15 @@ import dev.dai.weatherforecast.ui.theme.MyTheme
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            MyTheme {
-                MyApp()
+            ProvideWindowInsets {
+                MyTheme {
+                    WindowCompat.getInsetsController(
+                        window, window.decorView
+                    )?.isAppearanceLightStatusBars = MaterialTheme.colors.isLight
+                    MyApp()
+                }
             }
         }
     }
@@ -57,7 +53,10 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
+    Surface(
+        color = MaterialTheme.colors.background,
+        modifier = Modifier.fillMaxSize()
+    ) {
         Column {
             WeatherImage(weather, modifier = Modifier.weight(2f))
             WeatherForecastList(weatherForecastItems, modifier = Modifier.weight(3f))
