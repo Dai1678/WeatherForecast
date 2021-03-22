@@ -64,10 +64,16 @@ private fun WeatherForecastItem(weatherForecast: WeatherForecast) {
             modifier = Modifier.size(32.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = weatherForecast.dateString,
-            style = MaterialTheme.typography.body1
-        )
+        Column {
+            Text(
+                text = weatherForecast.dateString,
+                style = MaterialTheme.typography.body1
+            )
+            Text(
+                text = weatherForecast.weatherName,
+                style = MaterialTheme.typography.caption
+            )
+        }
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = "${weatherForecast.maximumTemperature}℃",

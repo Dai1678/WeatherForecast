@@ -16,54 +16,59 @@
 package dev.dai.weatherforecast.model
 
 data class WeatherForecast(
+    val weatherName: String,
     val dateString: String,
     val weatherIconId: String,
     val maximumTemperature: Int,
     val minimumTemperature: Int
-) {
-    fun getWeatherIconUrl(): String =
-        "https://openweathermap.org/img/wn/$weatherIconId@2x.png"
-}
+)
 
 val weatherForecastItems = listOf(
     WeatherForecast(
-        dateString = "3/22 13:00",
+        weatherName = "Clear",
+        dateString = "3/22 Monday",
         weatherIconId = "01d",
         maximumTemperature = 19,
         minimumTemperature = 10
     ),
     WeatherForecast(
-        dateString = "3/23 13:00",
+        weatherName = "Clouds",
+        dateString = "3/23 Tuesday",
         weatherIconId = "02d",
         maximumTemperature = 20,
         minimumTemperature = 10
     ),
     WeatherForecast(
-        dateString = "3/24 13:00",
+        weatherName = "Clouds",
+        dateString = "3/24 Wednesday",
         weatherIconId = "03d",
         maximumTemperature = 13,
         minimumTemperature = 10
     ),
     WeatherForecast(
-        dateString = "3/25 13:00",
+        weatherName = "Clouds",
+        dateString = "3/25 Thursday",
         weatherIconId = "04d",
         maximumTemperature = 15,
         minimumTemperature = 12
     ),
     WeatherForecast(
-        dateString = "3/26 13:00",
+        weatherName = "Drizzle",
+        dateString = "3/26 Friday",
         weatherIconId = "09d",
         maximumTemperature = 10,
         minimumTemperature = 5
     ),
     WeatherForecast(
-        dateString = "3/27 13:00",
+        weatherName = "Rain",
+        dateString = "3/27 Saturday",
         weatherIconId = "10d",
         maximumTemperature = 10,
         minimumTemperature = 9
     ),
     WeatherForecast(
-        dateString = "3/28 13:00",
+        weatherName = "Thunderstorm",
+        dateString = "3/28 Sunday",
         weatherIconId = "11d",
         maximumTemperature = 5,
         minimumTemperature = 1
