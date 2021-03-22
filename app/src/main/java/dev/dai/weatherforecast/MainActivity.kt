@@ -36,6 +36,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.dai.weatherforecast.model.weather
+import dev.dai.weatherforecast.ui.components.CurrentWeather
 import dev.dai.weatherforecast.ui.components.WeatherForecastList
 import dev.dai.weatherforecast.ui.theme.MyTheme
 
@@ -66,22 +68,7 @@ fun MyApp() {
                         .fillMaxSize()
                         .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp))
                 )
-                Column(
-                    Modifier
-                        .padding(16.dp)
-                        .align(Alignment.TopStart),
-                ) {
-                    Text(
-                        text = "Sunny",
-                        color = Color.White,
-                        style = MaterialTheme.typography.h5
-                    )
-                    Text(
-                        text = "18℃",
-                        color = Color.White,
-                        style = MaterialTheme.typography.subtitle1
-                    )
-                }
+                CurrentWeather(weather, modifier = Modifier.align(Alignment.TopStart))
                 Column(
                     Modifier
                         .padding(start = 16.dp, bottom = 16.dp)
