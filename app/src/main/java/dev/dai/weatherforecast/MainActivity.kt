@@ -53,10 +53,7 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(
-        color = MaterialTheme.colors.background,
-        modifier = Modifier.fillMaxSize()
-    ) {
+    Surface(color = MaterialTheme.colors.background) {
         Column {
             WeatherImage(weather, modifier = Modifier.weight(2f))
             WeatherForecastList(weatherForecastItems, modifier = Modifier.weight(3f))

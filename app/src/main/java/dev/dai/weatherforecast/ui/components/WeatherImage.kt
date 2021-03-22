@@ -47,13 +47,11 @@ import dev.dai.weatherforecast.util.toWeatherIconUrl
 
 @Composable
 fun WeatherImage(weather: Weather, modifier: Modifier = Modifier) {
-    val isLightTheme = MaterialTheme.colors.isLight
     Box(modifier = modifier) {
         Image(
             painter = painterResource(id = R.drawable.shibuya),
             contentDescription = "current place's image",
             contentScale = ContentScale.Crop,
-            alpha = if (isLightTheme) 1f else 0.8f,
             modifier = Modifier
                 .fillMaxSize()
                 .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp))
@@ -62,7 +60,9 @@ fun WeatherImage(weather: Weather, modifier: Modifier = Modifier) {
             weatherName = weather.weatherName,
             weatherIconId = weather.weatherIconId,
             temperature = weather.temperature,
-            modifier = Modifier.align(Alignment.TopStart).statusBarsPadding()
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .statusBarsPadding()
         )
         WeatherPlace(
             place = weather.place,
@@ -80,7 +80,7 @@ fun CurrentWeather(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier.padding(16.dp),
+        modifier = modifier.padding(start = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         CoilImage(
@@ -105,7 +105,11 @@ fun CurrentWeather(
 }
 
 @Composable
-fun WeatherPlace(place: String, city: String, modifier: Modifier = Modifier) {
+fun WeatherPlace(
+    place: String,
+    city: String,
+    modifier: Modifier = Modifier
+) {
     Column(modifier.padding(start = 16.dp, bottom = 16.dp)) {
         Text(
             text = place,
